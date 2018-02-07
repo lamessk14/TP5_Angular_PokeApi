@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+</head>
+<body ng-app="pokedex">
+
+<div class="container">
+    <h1>Pokésir</h1>
+
+    <div ng-controller="formCtrl">
+        <!-- Search -->
+        <input type="text" ng-model="filtre"><br>
+        <p>{{filtre}}</p>
+        <select ng-model="option">
+            <option ng-repeat="pokemon in data | filter:{name:filtre}">{{pokemon.name}}</option>
+        </select>
+        <button ng-click="$log.warn(option)">GET</button>
+        <ul>
+            <li ng-repeat="pokemon in data | filter:filtre">{{pokemon.name}}</li>
+        </ul>
+
+    </div>
+
+    <hr/>
+
+    <div ng-controller="listPokemon">
+        <!-- Search -->
+        <input type="text" ng-model="filtre">
+        <select ng-model="option">
+            <option ng-repeat="pokemon in resultatResource | filter:filtre">{{pokemon.name}}</option>
+        </select>
+        <p>{{filtre}}</p>
+        <ul>
+            <li ng-repeat="pokemon in resultatResource | filter:filtre">{{pokemon.name+ ', ' + pokemon.slot}}</li>
+        </ul>
+    </div>
+
+    <hr/>
+    <div ng-controller="apiform">
+        <!-- Search -->
+        <input type="text" ng-model="filtre">
+        <select ng-model="option">
+            <option ng-repeat="pokemon in myWelcome | filter:filtre">{{pokemon.name}}</option>
+        </select>
+    </div>
+
+</div>
+
+</div>
+
+<!-- Dependencies -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
+
+<!-- Pokedex app -->
+<script src="js/pokedex.js"></script>
+
+
+</body>
+</html>
