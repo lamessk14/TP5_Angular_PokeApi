@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://C:/wamp/www/aidodys_light/.idea/aidodys_light.iml" filepath="C:/wamp/www/aidodys_light/.idea/aidodys_light.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/teaching-jxs-tp5-master.iml" filepath="$PROJECT_DIR$/.idea/teaching-jxs-tp5-master.iml" />
     </modules>
   </component>
