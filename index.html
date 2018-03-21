@@ -12,9 +12,9 @@
 <div class="container">
     <h1>Pokésir</h1>
 
-    <div ng-controller="formCtrl">
+   <!-- <div ng-controller="formCtrl"> -->
         <!-- Search -->
-        <input type="text" ng-model="filtre"><br>
+       <!-- <input type="text" ng-model="filtre"><br>
         <p>{{filtre}}</p>
         <select ng-model="option">
             <option ng-repeat="pokemon in data | filter:{name:filtre}">{{pokemon.name}}</option>
@@ -26,17 +26,17 @@
 
     </div>
 
-    <hr/>
+    <hr/> -->
 
     <div ng-controller="listPokemon">
         <!-- Search -->
         <input type="text" ng-model="filtre">
         <select ng-model="option">
-            <option ng-repeat="pokemon in resultatResource | filter:filtre">{{pokemon.name}}</option>
+            <option ng-repeat="pokemon in resultatResource | filter:filtre">{{pokemon.pokemon_species.name}}</option>
         </select>
         <p>{{filtre}}</p>
         <ul>
-            <li ng-repeat="pokemon in resultatResource | filter:filtre">{{pokemon.name}}</li>
+            <li ng-repeat="pokemon in resultatResource | filter:filtre">{{pokemon.entry_number}} {{pokemon.pokemon_species.name}}</li>
         </ul>
     </div>
 
@@ -45,13 +45,13 @@
         <!-- Search -->
         <input type="text" ng-model="filtre">
         <select ng-model="option">
-            <option ng-repeat="pokemon in myWelcome | filter:filtre">{{pokemon.name}}</option>
+            <option ng-repeat="pokemon in myWelcome | filter:filtre">{{pokemon.pokemon_species.name}}</option>
         </select>
     </div>
+<hr/>
 
 </div>
 
-</div>
 
 <!-- Dependencies -->
 <script src="js/jquery.min.js"></script>
