@@ -41,6 +41,8 @@ pokeApp.factory('pokemonResource',function($resource) {
         })
 });
 
+//recupere tous les pokemon
+
 pokeApp.controller('listPokemon',['$scope','pokemonResource','$log',function ($scope,pokemonResource,$log) {
     pokemonResource.queryAll().$promise.then(function(value){
         console.log(value);
