@@ -20,9 +20,9 @@ pokeApp.controller('formCtrl', ['$scope','$log',function($scope, $log) {
 pokeApp.controller('apiform', function($scope, $http) {
     $http({
         method : "GET",
-        url : "https://pokeapi.co/api/v2/pokemon/"
+        url : "https://pokeapi.co/api/v2/pokedex/1"
     }).then(function mySuccess(response) {
-        $scope.myWelcome = response.data.results;
+        $scope.myWelcome = response.data.pokemon_entries;
         console.log($scope.myWelcome);
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
@@ -30,10 +30,10 @@ pokeApp.controller('apiform', function($scope, $http) {
 });
 
 pokeApp.factory('pokemonResource',function($resource) {
-    return $resource('https://pokeapi.co/api/v2/pokemon/:pokeid',{pokeid:'@id'},
+    return $resource('https://pokeapi.co/api/v2/pokedex/1/:pokeid',{pokeid:'@id'},
         {
             queryAll:{
-                url:'https://pokeapi.co/api/v2/pokemon/',
+                url:'https://pokeapi.co/api/v2/pokedex/1',
                 method: 'GET',
                 cache:false,
                 isArray:false
@@ -43,7 +43,8 @@ pokeApp.factory('pokemonResource',function($resource) {
 
 pokeApp.controller('listPokemon',['$scope','pokemonResource','$log',function ($scope,pokemonResource,$log) {
     pokemonResource.queryAll().$promise.then(function(value){
-        $scope.resultatResource = value.results;
+        console.log(value);
+        $scope.resultatResource = value.pokemon_entries;
         $log.warn($scope.resultatResource);
     })
 }])
