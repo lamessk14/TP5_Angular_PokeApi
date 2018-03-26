@@ -31,6 +31,15 @@ pokeApp.factory('pokemonService', [function(){
 }]);
 
 /*********** Controllers *************************/
+pokeApp.controller('formCtrl', ['$scope','$log',function($scope, $log) {
+        $scope.data =[{id: '1', name: 'Dogs'},
+            {id: '2', name: 'Tutorials'},
+            {id: '3', name: 'Cars'}
+
+        ];
+    $scope.$log = $log;
+    //$scope.option;
+}]);
 
 pokeApp.controller('listPokemon',['$scope','pokemonResource','$log',function ($scope,pokemonResource,$log) {
     pokemonResource.queryAll().$promise.then(function(value){
@@ -39,42 +48,26 @@ pokeApp.controller('listPokemon',['$scope','pokemonResource','$log',function ($s
     })
 }])
 
-/**
- * Recupère tous les pokemons
- */
-pokeApp.controller("pokeListCrtl",["$scope", "$log", "PokemonsService", "pokeService", function($scope, $log, PokemonsService, pokeService){
-    PokemonsService.get().then(function(data){
-        $scope.resultatResource = data;
-    }, function(msg){
-        alert(msg);
+pokeApp.controller('apiform', function($scope, $http) {
+    $http({
+        method : "GET",
+        url : "https://pokeapi.co/api/v2/pokemon/1"
+    }).then(function mySuccess(response) {
+        $scope.myWelcome = response.data.moves;
+        console.log($scope.myWelcome);
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
     });
+});
 
-    $scope.go = function(){
-        var pokeObject = JSON.parse($scope.pokeSelected);
-        $log.warn(pokeObject);
-    }
+//Recupère les informations relatives au pokemon selectionné
 
-    //Ecoute les changements de valeur de "pokeSelected" depuis la vue et met à jour le service "pokeService"
-    $scope.$watch("pokeSelected", function(newValue, oldValue) {
-        if($scope.pokeSelected){
-            var pokeObject = JSON.parse(newValue); //Converti la chaine de caractère renvoyée par la vue en objet
-            $log.warn(pokeObject);
-            pokeService.id = pokeObject.resource_uri.replace('api/v1/pokemon/', '').replace('/', ''); //Recupère l'id à partir de l'URI
-            pokeService.name = pokeObject.name;
-            $log.info(pokeService);
-        }
-    });
-}]);
-
-/**
- * Recupère les informations relatives au pokemon selectionné
- */
-pokeApp.controller("pokeViewCrtl",["$scope", "$log", "InfoService", "pokeService", function($scope, $log, InfoService, pokeService){
+pokeApp.controller("pokeSelectedAffichage",["$scope", "$log", "InfoService", "pokeService", function($scope, $log, InfoService, pokeService){
     $scope.pokeSelected = pokeService;
     $scope.$watch("pokeSelected.id", function(newValue, oldValue) {
         var info = InfoService.get({id: newValue}, function(){
             $log.info(info);
-            $scope.myWelcome = {
+            $scope.poke = {
                 id: info.pkdx_id,
                 name: info.name,
                 moves: info.moves,
