@@ -21,6 +21,7 @@ pokeApp.factory('pokemonResource',function($resource) {
         })
 });
 
+<<<<<<< HEAD
 //Création du service de pokemon
 pokeApp.factory('pokemonService', [function(){
     var factory = {
@@ -31,6 +32,9 @@ pokeApp.factory('pokemonService', [function(){
 }]);
 
 /*********** Controllers *************************/
+=======
+//recupere tous les pokemon
+>>>>>>> master
 
 pokeApp.controller('listPokemon',['$scope','pokemonResource','$log',function ($scope,pokemonResource,$log) {
     pokemonResource.queryAll().$promise.then(function(value){

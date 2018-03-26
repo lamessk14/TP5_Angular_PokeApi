@@ -2,10 +2,10 @@ TP6 : AngularJS
 
 
 
-Notre application est basé sur un Framework qui est lui meme basé sur l'architecture MVW(Model Vue Whatever),
-derivé du MVC.
-Le but etant la creation d'un pokedex, la recherche via le numero du pokemon et 
+Notre application est basée sur un Framework qui est lui meme basé sur l'architecture MVW(Model Vue Whatever),
+derivée du MVC.
+Le but étant la création d'un pokedex, la recherche via le numéro du pokemon et 
 la recherche d'un pokemon dans une liste , sont des fonctionnalités de base de l'application
-Aussi pouvoir acceder a une API Rest qui propose de recuperer la liste des pokemons et de pouvoir  les 
+Aussi pouvoir accéder à une API Rest qui propose de recupérer la liste des pokemons et de pouvoir  les 
 afficher.
-Cependant notre application propose differents champs permettant de faire ces recherches de pokemons
+Cependant notre application propose differents champs permettant de faire ces recherches de pokemons.
